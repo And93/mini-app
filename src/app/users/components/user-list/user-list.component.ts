@@ -5,8 +5,8 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Observable, of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 
-import {UserModel} from './../../models/user.model';
-import {UserObservableService } from './../../services';
+import {UserModel} from '../../models/user.model';
+import {UserObservableService} from '../../services';
 
 @Component({
   templateUrl: './user-list.component.html',

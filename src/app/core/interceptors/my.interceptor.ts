@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpParams } from '@angular/common/http';
+import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpParams} from '@angular/common/http';
 
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class MyInterceptor implements HttpInterceptor {
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // request interceptor
     let clonedRequest;
     if (req.url.includes('users')) {
@@ -30,8 +30,8 @@ export class MyInterceptor implements HttpInterceptor {
               console.log('Response Interceptor:');
               console.log(event);
               console.log(event.body);
-              return event;
             }
+            return event;
           }
         })
       );

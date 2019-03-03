@@ -1,13 +1,13 @@
-import {Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import { Location } from '@angular/common';
+import {Location} from '@angular/common';
 
 // rxjs
-import {Observable, Subscription } from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {pluck} from 'rxjs/operators';
 
 import {UserModel} from '../../models/user.model';
-import {UserObservableService } from '../../services';
+import {UserObservableService} from '../../services';
 import {AutoUnsubscribe, DialogService, CanComponentDeactivate} from '../../../core';
 
 @Component({
@@ -44,10 +44,10 @@ export class UserFormComponent implements OnInit, CanComponentDeactivate {
     this.sub = this.userObservableService[method](user)
       .subscribe(
         savedUser => {
-          this.originalUser = { ...savedUser };
+          this.originalUser = {...savedUser};
           user.id
             // optional parameter: http://localhost:4200/users;editedUserID=2
-            ? this.router.navigate(['users', { editedUserID: user.id }])
+            ? this.router.navigate(['users', {editedUserID: user.id}])
             : this.onGoBack();
         },
         error => console.log(error)

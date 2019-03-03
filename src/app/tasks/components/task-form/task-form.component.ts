@@ -4,8 +4,8 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 // rxjs
 import {switchMap} from 'rxjs/operators';
 
-import {TaskModel} from './../../models/task.model';
-import {TaskPromiseService } from './../../services';
+import {TaskModel} from '../../models/task.model';
+import {TaskPromiseService} from '../../services';
 
 @Component({
   templateUrl: './task-form.component.html',
@@ -32,8 +32,8 @@ export class TaskFormComponent implements OnInit {
             ? this.taskPromiseService.getTask(+params.get('taskID'))
             // when Promise.resolve(null) => task = null => {...null} => {}
             : Promise.resolve(null);
-          })
-        )
+        })
+      )
       .subscribe(task => this.task = {...task}, err => console.log(err));
   }
 

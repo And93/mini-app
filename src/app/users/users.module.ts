@@ -7,7 +7,7 @@ import {usersRouterComponents, UsersRoutingModule} from './users-routing.module'
 import {UserComponent} from './components';
 import {UsersServicesModule} from './users-services.module';
 
-import { UsersAPIProvider } from './users.config';
+import {UsersAPIProvider} from './users.config';
 
 @NgModule({
   imports: [

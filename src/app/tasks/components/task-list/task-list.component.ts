@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {TaskModel} from '../../models/task.model';
-import {TaskPromiseService } from '../../services';
+import {TaskPromiseService} from '../../services';
 
 @Component({
   templateUrl: './task-list.component.html',
@@ -51,6 +51,6 @@ export class TaskListComponent implements OnInit {
 
     const tasks: TaskModel[] = await this.tasks;
     const index = tasks.findIndex(t => t.id === updatedTask.id);
-    tasks[index] = { ...updatedTask };
+    tasks[index] = {...updatedTask};
   }
 }

@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import {Injectable, Inject} from '@angular/core';
 import {
   HttpClient,
   HttpHeaders,
@@ -6,12 +6,12 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 
-import { Observable, throwError } from 'rxjs';
-import { concatMap, catchError } from 'rxjs/operators';
+import {Observable, throwError} from 'rxjs';
+import {concatMap, catchError} from 'rxjs/operators';
 
-import { UserModel } from './../models/user.model';
-import { UsersAPI } from './../users.config';
-import { UsersServicesModule } from '../users-services.module';
+import {UserModel} from '../models/user.model';
+import {UsersAPI} from '../users.config';
+import {UsersServicesModule} from '../users-services.module';
 
 @Injectable({
   providedIn: UsersServicesModule
@@ -20,7 +20,8 @@ export class UserObservableService {
   constructor(
     private http: HttpClient,
     @Inject(UsersAPI) private usersUrl: string
-  ) {}
+  ) {
+  }
 
   getUsers(): Observable<UserModel[]> {
     return this.http
@@ -32,34 +33,34 @@ export class UserObservableService {
     const url = `${this.usersUrl}/${id}`;
 
     return this.http.get<UserModel>(url)
-        .pipe(
-          catchError(this.handleError)
-        );
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   updateUser(user: UserModel): Observable<UserModel> {
     const url = `${this.usersUrl}/${user.id}`,
-       body = JSON.stringify(user),
-       options = {
-         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-       };
+      body = JSON.stringify(user),
+      options = {
+        headers: new HttpHeaders({'Content-Type': 'application/json'})
+      };
 
-   return this.http
-         .put<UserModel>(url, body, options)
-         .pipe( catchError(this.handleError) );
+    return this.http
+      .put<UserModel>(url, body, options)
+      .pipe(catchError(this.handleError));
   }
 
   createUser(user: UserModel): Observable<UserModel> {
     const url = this.usersUrl,
-        body = JSON.stringify(user),
-        options = {
-          headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-        };
-       return this.http
-          .post<UserModel>(url, body, options)
-          .pipe(
-            catchError( this.handleError )
-          );
+      body = JSON.stringify(user),
+      options = {
+        headers: new HttpHeaders({'Content-Type': 'application/json'})
+      };
+    return this.http
+      .post<UserModel>(url, body, options)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   deleteUser(user: UserModel): Observable<UserModel[]> {
@@ -82,7 +83,7 @@ export class UserObservableService {
       // The response body may contain clues as to what went wrong,
       errorMessage = `Backend returned code ${err.status}, body was: ${
         err.error
-      }`;
+        }`;
     }
 
     console.error(errorMessage);

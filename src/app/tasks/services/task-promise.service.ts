@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import { TaskModel } from './../models/task.model';
-import { TasksServicesModule } from '../tasks-services.module';
+import {TaskModel} from '../models/task.model';
+import {TasksServicesModule} from '../tasks-services.module';
 
 @Injectable({
   providedIn: TasksServicesModule
@@ -10,7 +10,8 @@ import { TasksServicesModule } from '../tasks-services.module';
 export class TaskPromiseService {
   private tasksUrl = 'http://localhost:3000/tasks';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   getTask(id: number): Promise<TaskModel> {
     const url = `${this.tasksUrl}/${id}`;
@@ -33,7 +34,7 @@ export class TaskPromiseService {
     const url = `${this.tasksUrl}/${task.id}`,
       body = JSON.stringify(task),
       options = {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        headers: new HttpHeaders({'Content-Type': 'application/json'}),
       };
 
     return this.http
@@ -47,7 +48,7 @@ export class TaskPromiseService {
     const url = this.tasksUrl,
       body = JSON.stringify(task),
       options = {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        headers: new HttpHeaders({'Content-Type': 'application/json'})
       };
 
     return this.http
