@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 
 // rxjs
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 
 import {UserModel} from './../../models/user.model';
-import {UserArrayService} from './../../services/user-array.service';
+import {UserObservableService } from './../../services';
 
 @Component({
   templateUrl: './user-list.component.html',
@@ -18,18 +18,22 @@ export class UserListComponent implements OnInit {
   private editedUser: UserModel;
 
   constructor(
-    private userArrayService: UserArrayService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private userObservableService: UserObservableService
   ) {
   }
 
   ngOnInit() {
-    this.users$ = this.userArrayService.getUsers();
+    this.users$ = this.userObservableService.getUsers();
 
     this.route.paramMap
       .pipe(
-        switchMap((params: Params) => this.userArrayService.getUser(+params.get('editedUserID')))
+        switchMap((params: Params) => {
+          return params.get('editedUserID')
+            ? this.userObservableService.getUser(+params.get('editedUserID'))
+            : of(null);
+        })
       )
       .subscribe(
         (user: UserModel) => {
@@ -46,6 +50,10 @@ export class UserListComponent implements OnInit {
     // or
     // const link = ['edit', user.id];
     // this.router.navigate(link, {relativeTo: this.route});
+  }
+
+  onDeleteUser(user: UserModel) {
+    this.users$ = this.userObservableService.deleteUser(user);
   }
 
   isEdited(user: UserModel) {

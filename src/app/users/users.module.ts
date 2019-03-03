@@ -7,6 +7,8 @@ import {usersRouterComponents, UsersRoutingModule} from './users-routing.module'
 import {UserComponent} from './components';
 import {UsersServicesModule} from './users-services.module';
 
+import { UsersAPIProvider } from './users.config';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +19,9 @@ import {UsersServicesModule} from './users-services.module';
   declarations: [
     usersRouterComponents,
     UserComponent
+  ],
+  providers: [
+    UsersAPIProvider
   ]
 })
 export class UsersModule {
