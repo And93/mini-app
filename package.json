@@ -25,8 +25,10 @@
     "@ngrx/entity": "^6.0.0",
     "@ngrx/router-store": "^6.0.0",
     "@ngrx/store": "^6.0.0",
+    "acorn": "^6.1.1",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
+    "events": "^3.0.0",
     "rxjs": "^6.3.3",
     "zone.js": "^0.8.26"
   },
