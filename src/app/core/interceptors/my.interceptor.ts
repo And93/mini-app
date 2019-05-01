@@ -15,7 +15,7 @@ export class MyInterceptor implements HttpInterceptor {
         params: new HttpParams()
           .set('ts_interceptor', Date.now().toString())
       });
-      console.log(clonedRequest);
+      // console.log(clonedRequest);
     } else {
       clonedRequest = req;
     }
@@ -27,9 +27,9 @@ export class MyInterceptor implements HttpInterceptor {
           if (event instanceof HttpResponse) {
             // do stuff with response
             if (event.url.includes('users')) {
-              console.log('Response Interceptor:');
-              console.log(event);
-              console.log(event.body);
+              // console.log('Response Interceptor:');
+              // console.log(event);
+              // console.log(event.body);
             }
             return event;
           }
